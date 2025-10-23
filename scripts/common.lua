@@ -29,7 +29,7 @@ function common.build(player, entity, new_prototype, new_quality)
   local quality = entity.quality
   local force = entity.force
 
-  local new_entity = player.surface.create_entity({
+  local new_entity = surface.create_entity({
     name = new_prototype.name,
     position = entity.position,
     direction = entity.direction,
@@ -71,6 +71,9 @@ function common.build(player, entity, new_prototype, new_quality)
   end
 
   item.count = item.count - consume_count
+
+  local stats = force.get_entity_build_count_statistics(surface)
+  stats.on_flow(new_entity, 1)
 
   player.play_sound({
     path = "entity-build/" .. new_entity.name,
