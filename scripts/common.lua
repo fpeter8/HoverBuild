@@ -88,7 +88,6 @@ end
 --- @param new_prototype LuaEntityPrototype
 --- @return boolean
 function common.check_can_place_entity(player, entity, new_prototype)
-  -- TODO: Remote interface for mods to conditionally decide if placement is allowed.
   if
     not player.can_place_entity({
       name = new_prototype.name,

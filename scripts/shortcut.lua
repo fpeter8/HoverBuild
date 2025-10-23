@@ -1,6 +1,3 @@
--- TODO: Execute logic if enabled while entity is selected.
--- TODO: Cancel logic if disabled while entity is selected.
-
 --- @param e EventData.on_lua_shortcut|EventData.CustomInputEvent
 local function toggle_mouseover(e)
   local name = e.input_name or e.prototype_name
