@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
-Date: ????
+Date: 2025-10-23
   Compatibility:
     - Mods can specify `moc_ignore = true` in entity prototypes to have mouse-over construction ignore the entity. (#26)
   Bugfixes:
