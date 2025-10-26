@@ -117,13 +117,18 @@ local function on_selected_entity_changed(e)
   try_execute(player, selected)
 end
 
+local function init()
+  if not storage.recheck_on_move then
+    --- @type Set<PlayerIndex>
+    storage.recheck_on_move = {}
+  end
+end
+
 --- @class orchestrator_handler : event_handler
 local orchestrator_handler = {}
 
-function orchestrator_handler.on_init()
-  --- @type Set<PlayerIndex>
-  storage.recheck_on_move = {}
-end
+orchestrator_handler.on_init = init
+orchestrator_handler.on_configuration_changed = init
 
 orchestrator_handler.events = {
   [defines.events.on_player_changed_position] = on_player_changed_position,
