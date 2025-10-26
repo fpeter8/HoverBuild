@@ -7,6 +7,15 @@ local function bounding_boxes_equal(box1, box2)
     and box1.right_bottom.y == box2.right_bottom.y
 end
 
+--- @param entity LuaEntity
+--- @return string
+local function get_useful_type(entity)
+  if entity.type == "entity-ghost" then
+    return entity.ghost_type
+  end
+  return entity.type
+end
+
 --- @class common
 local common = {}
 
@@ -45,7 +54,7 @@ function common.build(player, entity, new_prototype, new_quality)
     item = item,
     register_plant = true,
     --- Undergound belt
-    type = entity.ghost_type == "underground-belt" and entity.belt_to_ground_type or nil,
+    type = get_useful_type(entity) == "underground-belt" and entity.belt_to_ground_type or nil,
   })
   if not new_entity or not new_entity.valid then
     -- Some mods will immediately replace the entity with a different one. Let's see if we can detect this.
