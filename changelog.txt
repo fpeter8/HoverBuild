@@ -3,6 +3,7 @@ Version: 2.0.1
 Date: ????
   Bugfixes:
     - Fixed another crash when loading save files with old versions of the mod.
+    - Fixed that output underground belts would be revived as input belts. (#28)
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: 2025-10-23

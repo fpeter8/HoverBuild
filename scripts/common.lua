@@ -45,7 +45,7 @@ function common.build(player, entity, new_prototype, new_quality)
     item = item,
     register_plant = true,
     --- Undergound belt
-    type = entity.type == "underground-belt" and entity.belt_to_ground_type or nil,
+    type = entity.ghost_type == "underground-belt" and entity.belt_to_ground_type or nil,
   })
   if not new_entity or not new_entity.valid then
     -- Some mods will immediately replace the entity with a different one. Let's see if we can detect this.
