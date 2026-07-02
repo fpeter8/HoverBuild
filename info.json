@@ -1,13 +1,13 @@
 {
   "name": "MouseOverConstruction",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "title": "Mouse-Over Construction",
   "author": "raiguard",
   "contact": "https://codeberg.org/raiguard/MouseOverConstruction",
   "homepage": "https://codeberg.org/raiguard/MouseOverConstruction",
   "description": "Revive ghosts, upgrade, repair, and deconstruct with a simple mouse-over. Respects reach distance and mining speed. Similar to GhostPlacerExpress and MouseOverDeconstruct.",
-  "factorio_version": "2.0",
-  "dependencies": [ "base >= 2.0.60", "flib >= 0.16.0" ],
+  "factorio_version": "2.1",
+  "dependencies": [ "base >= 2.1.7", "flib >= 0.17.0" ],
   "package": {
     "git_publish_branch": "trunk",
     "scripts": {
