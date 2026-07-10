@@ -40,10 +40,10 @@ function common.build(player, entity, new_prototype, new_quality)
 
   local new_entity = surface.create_entity({
     name = new_prototype.name,
-    position = entity.position,
-    direction = entity.direction,
+    position = position,
+    direction = direction,
     quality = new_quality,
-    force = entity.force,
+    force = force,
     fast_replace = true,
     player = player,
     character = player.character,
