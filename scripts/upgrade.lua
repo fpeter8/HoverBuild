@@ -27,7 +27,7 @@ return function(player, entity)
   end
 
   --- @type LuaEntity?
-  local underground_neighbour = entity.type == "underground-belt" and entity.neighbours or nil
+  local underground_neighbour = entity.type == "underground-belt" and entity.underground_belt_neighbour or nil
 
   local upgraded = common.build(player, entity, upgrade_prototype, upgrade_quality)
   if not upgraded then
