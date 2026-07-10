@@ -3,6 +3,7 @@ Version: 2.1.1
 Date: ????
   Bugfixes:
     - Fixed a crash when upgrading an underground belt. (#39, #40)
+    - Fixed that some entities would not preserve mirroring upon construction.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2026-07-02

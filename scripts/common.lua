@@ -53,7 +53,8 @@ function common.build(player, entity, new_prototype, new_quality)
     move_stuck_players = true,
     item = item,
     register_plant = true,
-    --- Undergound belt
+    mirror = entity.mirroring,
+    -- Undergound belt
     type = get_useful_type(entity) == "underground-belt" and entity.belt_to_ground_type or nil,
   })
   if not new_entity or not new_entity.valid then
