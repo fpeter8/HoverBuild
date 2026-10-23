@@ -10,7 +10,7 @@
       "adjustMods": {
         "EditorExtensions": true,
         "flib": true,
-        "MouseOverConstruction": true,
+        "HoverBuild": true,
         "Sandbox": true
       },
       "disableExtraMods": true

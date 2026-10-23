@@ -115,6 +115,45 @@ function common.check_can_place_entity(player, entity, new_prototype)
   return true
 end
 
+--- Returns an iterator over the item stacks in the player's cursor and main inventory that
+--- match the given item and quality.
+--- @param player LuaPlayer
+--- @param name string
+--- @param quality LuaQualityPrototype
+--- @return fun(): LuaItemStack?
+function common.iter_items(player, name, quality)
+  local stacks = {}
+
+  local cursor_stack = player.cursor_stack
+  if cursor_stack and cursor_stack.valid_for_read then
+    stacks[#stacks + 1] = cursor_stack
+  end
+
+  local inventory = player.get_main_inventory()
+  if inventory then
+    for i = 1, #inventory do
+      local stack = inventory[i]
+      if stack and stack.valid_for_read then
+        stacks[#stacks + 1] = stack
+      end
+    end
+  end
+
+  local index = 0
+  return function()
+    while true do
+      index = index + 1
+      local stack = stacks[index]
+      if not stack then
+        return nil
+      end
+      if stack.valid_for_read and stack.name == name and stack.quality == quality then
+        return stack
+      end
+    end
+  end
+end
+
 --- Returns the first LuaItemStack that can build the given entity and quality.
 --- @param player LuaPlayer
 --- @param prototype LuaEntityPrototype

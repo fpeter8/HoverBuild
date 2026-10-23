@@ -1,13 +1,11 @@
 {
-  "name": "MouseOverConstruction",
-  "version": "2.1.2",
-  "title": "Mouse-Over Construction",
+  "name": "HoverBuild",
+  "version": "1.0.0",
+  "title": "Hover Build",
   "author": "raiguard",
-  "contact": "https://codeberg.org/raiguard/MouseOverConstruction",
-  "homepage": "https://codeberg.org/raiguard/MouseOverConstruction",
-  "description": "Revive ghosts, upgrade, repair, and deconstruct with a simple mouse-over. Respects reach distance and mining speed. Similar to GhostPlacerExpress and MouseOverDeconstruct.",
+  "description": "Fork of Mouse-Over Construction. Revive ghosts, upgrade, repair, and deconstruct with a simple mouse-over. Respects reach distance and mining speed. Similar to GhostPlacerExpress and MouseOverDeconstruct.",
   "factorio_version": "2.1",
-  "dependencies": [ "base >= 2.1.7", "flib >= 0.17.0" ],
+  "dependencies": [ "base >= 2.1.7", "flib >= 0.17.0", "! MouseOverConstruction" ],
   "package": {
     "git_publish_branch": "trunk",
     "scripts": {

@@ -1,5 +1,6 @@
 local construct = require("scripts.construct")
 local deconstruct = require("scripts.deconstruct")
+local insert = require("scripts.insert")
 local repair = require("scripts.repair")
 local upgrade = require("scripts.upgrade")
 
@@ -32,6 +33,11 @@ local function try_execute(player, entity)
     storage.recheck_on_move[player.index] = true
     return
   end
+
+  -- Fulfill any pending item requests before deciding whether an action can be executed,
+  -- so that insertion also works while holding a blueprint or upgrade planner.
+  local processed_requests = insert.process_entity(player, entity)
+  insert.cancel_completed_upgrade(player, entity, processed_requests)
 
   local cursor_stack = player.cursor_stack
   if not cursor_stack then
@@ -117,6 +123,48 @@ local function on_selected_entity_changed(e)
   try_execute(player, selected)
 end
 
+--- @param e EventData.on_blueprint_settings_pasted
+local function on_blueprint_settings_pasted(e)
+  if not e.player_index or not e.entity.valid then
+    return
+  end
+
+  local player = game.get_player(e.player_index)
+  if not player or player.selected ~= e.entity then
+    return
+  end
+
+  try_execute(player, e.entity)
+end
+
+--- @param e EventData.on_entity_settings_pasted
+local function on_entity_settings_pasted(e)
+  if not e.destination.valid then
+    return
+  end
+
+  local player = game.get_player(e.player_index)
+  if not player or player.selected ~= e.destination then
+    return
+  end
+
+  try_execute(player, e.destination)
+end
+
+--- @param e EventData.on_marked_for_upgrade
+local function on_marked_for_upgrade(e)
+  if not e.player_index or not e.entity.valid then
+    return
+  end
+
+  local player = game.get_player(e.player_index)
+  if not player or player.selected ~= e.entity then
+    return
+  end
+
+  try_execute(player, e.entity)
+end
+
 local function init()
   if not storage.recheck_on_move then
     --- @type Set<PlayerIndex>
@@ -133,6 +181,9 @@ orchestrator_handler.on_configuration_changed = init
 orchestrator_handler.events = {
   [defines.events.on_player_changed_position] = on_player_changed_position,
   [defines.events.on_selected_entity_changed] = on_selected_entity_changed,
+  [defines.events.on_blueprint_settings_pasted] = on_blueprint_settings_pasted,
+  [defines.events.on_entity_settings_pasted] = on_entity_settings_pasted,
+  [defines.events.on_marked_for_upgrade] = on_marked_for_upgrade,
 }
 
 return orchestrator_handler

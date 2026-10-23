@@ -27,4 +27,25 @@ data:extend({
     default_value = true,
     order = "d",
   },
+  {
+    type = "bool-setting",
+    name = "moc-insert-modules",
+    setting_type = "runtime-per-user",
+    default_value = true,
+    order = "e",
+  },
+  {
+    type = "bool-setting",
+    name = "moc-insert-ammo",
+    setting_type = "runtime-per-user",
+    default_value = false,
+    order = "f",
+  },
+  {
+    type = "bool-setting",
+    name = "moc-insert-fuel",
+    setting_type = "runtime-per-user",
+    default_value = false,
+    order = "g",
+  },
 })

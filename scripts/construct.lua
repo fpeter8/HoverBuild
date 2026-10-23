@@ -1,4 +1,5 @@
 local common = require("scripts.common")
+local insert = require("scripts.insert")
 
 --- @param player LuaPlayer
 --- @param entity LuaEntity
@@ -22,7 +23,15 @@ return function(player, entity)
     return false
   end
 
-  local new_entity = common.build(player, entity, entity_prototype, entity.quality)
+  -- The ghost is destroyed by construction, so its requests need to be saved first.
+  local insert_plan = insert.copy_plan(entity.insert_plan)
 
-  return new_entity and new_entity.valid and true or false
+  local new_entity = common.build(player, entity, entity_prototype, entity.quality)
+  if not new_entity or not new_entity.valid then
+    return false
+  end
+
+  insert.process_built_entity(player, new_entity, insert_plan)
+
+  return true
 end
